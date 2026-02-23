@@ -90,6 +90,29 @@
     }
     .cta.viber:hover { background: #5a46db; box-shadow: 0 0 15px rgba(115, 96, 242, 0.3); }
 
+    /* Scroll to Top Button */
+    .scrollTopBtn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      background: var(--viber);
+      color: #fff;
+      border-radius: 50%;
+      display: none; /* Скрит по подразбиране */
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      z-index: 999;
+      transition: all 0.3s ease;
+    }
+    .scrollTopBtn:hover {
+      background: #5a46db;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    }
+
     /* Hero Section */
     .hero{padding:80px 0 60px; text-align: center;}
     h1{margin:0 0 16px;font-size:48px;line-height:1.1; font-weight: 800; letter-spacing: -1px;}
@@ -496,6 +519,12 @@
   </div>
 </main>
 
+<a href="#top" id="scrollTopBtn" class="scrollTopBtn" title="Нагоре">
+  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path>
+  </svg>
+</a>
+
 <footer>
   <div class="container">
     <div>&copy; <span id="year"></span> Enduro Gumi. Всички права запазени.</div>
@@ -506,7 +535,19 @@
 </footer>
 
 <script>
+  // Слагаме актуалната година в долния колофон
   document.getElementById("year").textContent = new Date().getFullYear();
+
+  // Логика за бутона "Нагоре"
+  const scrollBtn = document.getElementById("scrollTopBtn");
+  window.addEventListener("scroll", () => {
+    // Ако потребителят е скролнал повече от 300 пиксела надолу, покажи бутона
+    if (window.scrollY > 300) {
+      scrollBtn.style.display = "flex";
+    } else {
+      scrollBtn.style.display = "none";
+    }
+  });
 </script>
 
 </body>
