@@ -1,0 +1,537 @@
+<!doctype html>
+<html lang="bg">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Enduro Gumi – Ендуро, Адвенчър и Пистови Гуми</title>
+  <meta name="description" content="Мото гуми за хард ендуро, адвенчър и пистови мотори. Michelin, Dunlop, Metzeler, X-GRIP, Plews, Pirelli." />
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  
+  <style>
+    :root{
+      --bg:#0b0f14;
+      --panel:#161b22;
+      --text:#e9eef6;
+      --muted:#8b949e;
+      --blue:#2f81f7;
+      --yellow:#e3b341; 
+      --red:#f85149;
+      --purple:#a371f7;
+      --orange:#d27523;
+      --green:#238636;
+      --viber:#7360f2; /* Официален Viber цвят */
+      --line:rgba(240,246,252,0.1);
+      --shadow: 0 4px 12px rgba(0,0,0,0.5);
+      --shadow-hover: 0 12px 24px rgba(0,0,0,0.6);
+      --radius:12px;
+    }
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background: #0d1117;
+      background-image: radial-gradient(circle at 50% 0%, #1f2428 0%, #0d1117 100%);
+      color:var(--text);
+      line-height: 1.6;
+      scroll-behavior: smooth;
+    }
+    a{color:inherit;text-decoration:none; transition: 0.2s ease;}
+    .container{max-width:1200px;margin:0 auto;padding:0 20px}
+    
+    /* Header Styles */
+    header{
+      position:sticky; top:0; z-index:100;
+      backdrop-filter: blur(12px);
+      background: rgba(13, 17, 23, 0.85);
+      border-bottom:1px solid var(--line);
+    }
+    .nav{
+      display:flex;align-items:center;justify-content:space-between;
+      padding:16px 0;
+      gap:20px;
+    }
+    .brand{display:flex;align-items:center;gap:12px; font-size: 20px;}
+    .brand img{height:40px; width:auto;}
+    .brand .name{font-weight:800;letter-spacing:-0.5px}
+    .brand .name span{color:var(--blue)}
+    
+    nav{display:none;} 
+    @media(min-width: 768px) {
+        nav {display:flex; gap:24px;}
+        nav a {color: var(--muted); font-weight: 600; font-size: 14px;}
+        nav a:hover {color: var(--blue);}
+    }
+
+    /* Buttons */
+    .cta{
+      display:inline-flex;align-items:center;justify-content:center; gap:8px;
+      border-radius:6px; padding:10px 20px;
+      font-weight:600; font-size: 14px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+      border: 1px solid transparent;
+    }
+    .cta.primary{
+      background: var(--blue); color: #fff;
+      box-shadow: 0 0 15px rgba(47, 129, 247, 0.2);
+    }
+    .cta.primary:hover{background: #58a6ff; transform: translateY(-1px);}
+    
+    .cta.accent{
+      background: transparent; border: 1px solid var(--line); color: var(--text);
+    }
+    .cta.accent:hover{border-color: var(--muted); background: rgba(255,255,255,0.05);}
+
+    /* Viber бутон стилове */
+    .cta.viber {
+        background: var(--viber); color: #fff; border: none;
+    }
+    .cta.viber:hover { background: #5a46db; box-shadow: 0 0 15px rgba(115, 96, 242, 0.3); }
+
+    /* Scroll to Top Button */
+    .scrollTopBtn {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      width: 48px;
+      height: 48px;
+      background: var(--viber);
+      color: #fff;
+      border-radius: 50%;
+      display: none; /* Скрит по подразбиране */
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+      z-index: 999;
+      transition: all 0.3s ease;
+    }
+    .scrollTopBtn:hover {
+      background: #5a46db;
+      transform: translateY(-3px);
+      box-shadow: 0 8px 16px rgba(0,0,0,0.5);
+    }
+
+    /* Hero Section */
+    .hero{padding:80px 0 60px; text-align: center;}
+    h1{margin:0 0 16px;font-size:48px;line-height:1.1; font-weight: 800; letter-spacing: -1px;}
+    h1 .gradient-text {
+        background: linear-gradient(90deg, #58a6ff, #a371f7);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+    .lead{color:var(--muted);font-size:18px; max-width: 600px; margin: 0 auto 32px;}
+    
+    /* Section Headers */
+    .sectionTitle {text-align: center; margin-bottom: 40px; margin-top: 60px; padding-top: 40px; border-top: 1px solid var(--line);}
+    .sectionTitle h2 {font-size: 32px; margin-bottom: 8px;}
+    
+    /* Grid System */
+    .grid4 {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 24px;
+    }
+    
+    /* Product Card */
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      overflow: hidden;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      display: flex;
+      flex-direction: column;
+    }
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+        border-color: var(--blue);
+    }
+    .card .imgWrap{
+      padding: 20px;
+      background: radial-gradient(circle, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0) 70%);
+      height: 220px;
+      display:flex;align-items:center;justify-content:center;
+    }
+    .card img{
+        max-width:100%; max-height:100%; 
+        object-fit:contain; 
+        filter: drop-shadow(0 10px 20px rgba(0,0,0,0.5));
+        transition: transform 0.3s ease;
+    }
+    .card:hover img { transform: scale(1.05); }
+
+    .card .body{padding:20px; flex-grow: 1; display: flex; flex-direction: column;}
+    
+    .badge{
+      display:inline-block; align-self: flex-start;
+      padding:4px 8px; border-radius:4px;
+      font-size:11px; font-weight:700; text-transform: uppercase; letter-spacing: 0.5px;
+      margin-bottom: 12px;
+      background: rgba(255,255,255,0.1); color: var(--text);
+      border: 1px solid rgba(255,255,255,0.1);
+    }
+    
+    /* Badge Colors */
+    .badge.hot { background: rgba(248, 81, 73, 0.15); color: #ff7b72; border-color: rgba(248, 81, 73, 0.3); }
+    .badge.new { background: rgba(47, 129, 247, 0.15); color: #79c0ff; border-color: rgba(47, 129, 247, 0.3); }
+    .badge.purple { background: rgba(163, 113, 247, 0.15); color: #d2a8ff; border-color: rgba(163, 113, 247, 0.3); }
+    .badge.adventure { background: rgba(210, 117, 35, 0.15); color: #ffb74d; border-color: rgba(210, 117, 35, 0.3); }
+    .badge.track { background: rgba(248, 81, 73, 0.15); color: #ff7b72; border-color: rgba(248, 81, 73, 0.3); }
+
+    .card h3{margin:0 0 8px; font-size:18px; line-height: 1.3;}
+    .card p{margin:0 0 16px; color:var(--muted); font-size:14px; flex-grow: 1;}
+    
+    /* Pricing Styles */
+    .price {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-bottom: 16px;
+    }
+    .price .old {
+      color: var(--muted);
+      text-decoration: line-through;
+      font-size: 14px;
+    }
+    .price .new {
+      color: #3fb950; /* Зелен акцент за новата цена */
+      font-weight: 800;
+      font-size: 20px;
+    }
+
+    .card .actions{
+        margin-top: auto;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+    }
+    
+    /* Footer */
+    footer{
+      margin-top: 80px;
+      padding:40px 0;
+      border-top:1px solid var(--line);
+      text-align: center; color: var(--muted); font-size: 14px;
+    }
+
+    /* Mobile tweaks */
+    @media (max-width: 600px){
+      h1{font-size:32px}
+      .grid4{grid-template-columns: 1fr;}
+      .card .actions { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body id="top">
+
+<header>
+  <div class="container">
+    <div class="nav">
+      <a class="brand" href="#top">
+        <img src="endurogumilogobyalo.png" alt="EG" />
+        <div class="name">Enduro<span>Gumi</span></div>
+      </a>
+
+      <nav>
+        <a href="#about">За нас</a>
+        <a href="#enduro">Ендуро</a>
+        <a href="#adventure">Адвенчър</a>
+        <a href="#track">Писта</a>
+        <a href="#contact">Контакт</a>
+      </nav>
+
+      <a class="cta viber" href="viber://chat?number=359879350721" target="_blank">
+        <svg width="16" height="16" fill="currentColor" viewBox="0 0 512 512"><path d="M444 49.9C431.3 38.2 379.9 .9 265.3 .4c0 0-135.1-8.1-200.9 52.3C27.8 89.3 14.9 143 13.5 209.5c-1.4 66.5-3.1 191.1 117 224.9h.1l-.1 51.6s-.8 20.9 13 25.1c16.6 5.2 26.4-10.7 42.3-27.8 8.7-9.4 20.4-23.2 29.4-33.8 11.4 2.9 25.3 5.1 41.5 5.1 0 0 153.8 13.3 227.4-72.5C557.6 302.6 456.7 61.6 444 49.9zm-38 293.7c-9.1 11.9-20.9 15.6-32.9 16.6-18 1.5-36-5.8-62.5-19.3-31-15.8-63.1-39.4-96-72.3-30.8-30.8-54.3-61.9-69.5-91.1-13.5-25.8-21.7-43.7-20.6-61.4 1-12 5-23.7 16.7-32.6 15-11.5 28.2-11.8 41.5-6.7 8.2 3.1 14.3 8.3 19.3 14.3 8 9.5 15.7 20 23.3 30.7 7.7 10.8 11.1 20 9 30-1.8 8.6-8.3 14.9 24.3l-10 11.8c-2.3 2.7-2.6 6.3-.7 9.4 10.6 16.9 23.2 32.7 37.8 47.3 14.6 14.6 30.3 27.2 47.1 37.7 3 1.9 6.5 1.6 9.3-.6l11.7-9.9c7.8-6.6 15.6-13.1 24.1-14.8 9.9-2 19.2 1.4 29.9 9 10.5 7.4 20.8 14.9 30.2 22.8 6 5 11.3 11 14.4 19 3.2 8.3 3.3 19.3-6.6 32.1z"/></svg>
+        Viber
+      </a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="container">
+      <div class="badge new" style="margin-bottom: 20px;">Сезон 2026</div>
+      <h1>Професионални <span class="gradient-text">Мото Гуми</span></h1>
+      <p class="lead">
+        Директен внос на топ марките: Michelin, Dunlop, Metzeler, Pirelli, X-GRIP и Plews.
+        Експертна консултация за правилния избор.
+      </p>
+      <div style="display:flex; gap:10px; justify-content:center; flex-wrap:wrap;">
+        <a class="cta primary" href="#enduro">Ендуро</a>
+        <a class="cta accent" href="#adventure">Адвенчър</a>
+        <a class="cta accent" href="#track">Писта</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" style="padding: 60px 0 20px 0; text-align: center;">
+    <div class="container" style="max-width: 800px;">
+      <h2 style="font-size: 32px; margin-bottom: 16px;">За нас</h2>
+      <p class="lead" style="font-size: 18px; color: var(--text);">
+        Прекарали сме голяма част от живота си в ендуро състезанията на България и Европа и сме осъзнали, че гумата е първата контактна точка със земята, съответно това е нашата най-важна инвестиция в света на моторните спортове. Свържете се с нас за професионален съвет!
+      </p>
+    </div>
+  </section>
+
+  <div class="container">
+    
+    <section id="enduro">
+      <div class="sectionTitle">
+        <h2>Hard Enduro & Cross Country</h2>
+        <p style="color:var(--muted)">Максимално сцепление за най-тежките терени</p>
+      </div>
+
+      <div class="grid4">
+        
+        <article class="card">
+          <div class="imgWrap">
+            <img src="kingkong.png" alt="X-GRIP King Kong" loading="lazy" />
+          </div>
+          <div class="body">
+            <span class="badge hot">Brightmore's Choice</span>
+            <h3>X-GRIP King Kong</h3>
+            <p>Абсолютният хищник. Агресивен грайфер, който "яде" корени за закуска.</p>
+            <div class="actions">
+              <a class="cta primary" href="viber://chat?number=359879350721" target="_blank">Поръчай</a>
+              <a class="cta accent" href="https://www.x-grip.at/shop/x-grip/tyres/rear-tyres/tyre-king-kong-140-80-18/" target="_blank">Инфо</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="imgWrap">
+            <img src="toughone.png" alt="Plews The Tough One" loading="lazy" />
+          </div>
+          <div class="body">
+            <span class="badge purple">Wade Young Choice</span>
+            <h3>Plews Tyres The Tough One</h3>
+            <p>Върхът в инженерството за екстремно ендуро. Дизайн за брутални терени.</p>
+            <div class="price">
+               <span class="old">107.88 €</span>
+               <span class="new">102.00 € / 197.65 лв.</span>
+            </div>
+            <div class="actions">
+              <a class="cta primary" href="viber://chat?number=359879350721" target="_blank">Поръчай</a>
+              <a class="cta accent" href="https://plewstyres.co.uk/collections/en1-tough-one/products/8230?variant=43182022787244" target="_blank">Инфо</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="imgWrap">
+            <img src="toughonesb.png" alt="Plews Tough One Spec B" loading="lazy" />
+          </div>
+          <div class="body">
+            <span class="badge purple">Hard Enduro Training Choice</span>
+            <h3>Plews Extreme Tough One Spec B</h3>
+            <p>Върхът в инженерството за екстремно ендуро. Създадена да покорява най-бруталните терени с несравнимо сцепление и издръжливост.</p>
+            <div class="price">
+               <span class="old">116.00 €</span>
+               <span class="new">114.50 € / 221.87 лв.</span>
+            </div>
+            <div class="actions">
+              <a class="cta primary" href="viber://chat?number=359879350721" target="_blank">Поръчай</a>
+              <a class="cta accent" href="https://plewstyres.co.uk/collections/en1-tough-one/products/plews-tyres-en1-extreme-the-tough-one-spec-b-rear-15-mm-grips-140-80-18?variant=51889732682106" target="_blank">Инфо</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="imgWrap">
+            <img src="thebeast90.png" alt="Plews The Beast" loading="lazy" />
+          </div>
+          <div class="body">
+            <span class="badge purple">Mario Roman Choice</span>
+            <h3>Plews The Beast (Hybrid)</h3>
+            <p>Универсален боец: Ендуро + Трейл. Идеален за всякакви скорости.</p>
+            <div class="price">
+               <span class="old">103.00 €</span>
+               <span class="new">101.40 € / 196.49 лв.</span>
+            </div>
+            <div class="actions">
+              <a class="cta primary" href="viber://chat?number=359879350721" target="_blank">Поръчай</a>
+              <a class="cta accent" href="https://plewstyres.co.uk/collections/hybrid-enduro-trail/products/9431?variant=55993804456314" target="_blank">Инфо</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="adventure">
+      <div class="sectionTitle">
+        <h2>Adventure & Dual Sport</h2>
+        <p style="color:var(--muted)">За пътешествия без граници (80/20 и 50/50)</p>
+      </div>
+
+      <div class="grid4">
+        
+        <article class="card">
+          <div class="imgWrap">
+            <img src="michelinanakee2.png" alt="Michelin Anakee Adventure 2" loading="lazy" />
+          </div>
+          <div class="body">
+            <span class="badge adventure">Adventure 80/20</span>
+            <h3>Michelin Anakee Adventure 2</h3>
+            <p>
+               Гума за големи приключения. Отлично поведение на мокро и сухо, съчетано с офроуд възможности.
+            </p>
+            <div class="actions">
+              <a class="cta primary" href="viber://chat?number=359879350721" target="_blank">Поръчай</a>
+              <a class="cta accent" href="https://www.michelinman.com/motorcycle/tires/michelin-anakee-adventure-2" target="_blank">Инфо</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="imgWrap">
+            <img src="dunloptrailmaxraid.png" alt="Dunlop Trailmax Raid" loading="lazy" />
+          </div>
+          <div class="body">
+            <span class="badge adventure">50/50 Dual Sport</span>
+            <h3>Dunlop Trailmax Raid</h3>
+            <p>
+               Отлично сцепление на пътя и офроуд. Стабилно управление, увереност на мокро и спирачна сила за всякакви условия.
+            </p>
+            <div class="actions">
+              <a class="cta primary" href="viber://chat?number=359879350721" target="_blank">Поръчай</a>
+              <a class="cta accent" href="https://www.dunlop-moto.com/en_gb/tires/trailmax-raid--trx-raid.html" target="_blank">Инфо</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="imgWrap">
+            <img src="pirelliscorpionrally.png" alt="Pirelli Scorpion Rally STR" loading="lazy" />
+          </div>
+          <div class="body">
+            <span class="badge adventure">Adventure On/Off</span>
+            <h3>Pirelli Scorpion Rally STR</h3>
+            <p>
+               Новата on/off гума за приключения без граници. Комбинация от агресивен грайфер за офроуд и комфорт, сцепление и сигурност на мокро за дълги пътувания.
+            </p>
+            <div class="actions">
+              <a class="cta primary" href="viber://chat?number=359879350721" target="_blank">Поръчай</a>
+              <a class="cta accent" href="https://www.pirelli.com/tyres/en-ww/motorcycle/catalogue/product/scorpion-rally-str" target="_blank">Инфо</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="track">
+      <div class="sectionTitle">
+        <h2>Track & Supersport</h2>
+        <p style="color:var(--muted)">Безкомпромисно сцепление за писта и спортно каране</p>
+      </div>
+
+      <div class="grid4">
+        
+        <article class="card">
+          <div class="imgWrap">
+            <img src="pirellicorsa4.png" alt="Pirelli Diablo Rosso IV Corsa" loading="lazy" />
+          </div>
+          <div class="body">
+            <span class="badge track">Supersport</span>
+            <h3>Pirelli DIABLO ROSSO™ IV Corsa</h3>
+            <p>
+               По-агресивната версия на DIABLO ROSSO™ IV. Създадена за търсачи на силни усещания, които искат повече от стандартна спортна гума.
+            </p>
+            <div class="actions">
+              <a class="cta primary" href="viber://chat?number=359879350721" target="_blank">Поръчай</a>
+              <a class="cta accent" href="https://www.pirelli.com/tyres/en-ww/motorcycle/catalogue/product/diablo-rosso-iv-corsa" target="_blank">Инфо</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="imgWrap">
+            <img src="michelinpowercup2.png" alt="Michelin Power Cup 2" loading="lazy" />
+          </div>
+          <div class="body">
+            <span class="badge track">Track & Road</span>
+            <h3>Michelin Power Cup 2</h3>
+            <p>
+               Създадена за пистата, но одобрена за пътя. Предлага максимално сцепление, топ представяне още от първия завой и висока издръжливост.
+            </p>
+            <div class="actions">
+              <a class="cta primary" href="viber://chat?number=359879350721" target="_blank">Поръчай</a>
+              <a class="cta accent" href="https://www.michelin.co.uk/motorbike/tyres/michelin-power-cup-2" target="_blank">Инфо</a>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="imgWrap">
+            <img src="metzelerracetecrr.png" alt="Metzeler Racetec RR" loading="lazy" />
+          </div>
+          <div class="body">
+            <span class="badge track">Road Racing</span>
+            <h3>Metzeler RACETEC™ RR</h3>
+            <p>
+               Усети състезанието, усети пътя. Разработена да печели улични състезания, RACETEC™ RR доставя максимално представяне и стабилност.
+            </p>
+            <div class="actions">
+              <a class="cta primary" href="viber://chat?number=359879350721" target="_blank">Поръчай</a>
+              <a class="cta accent" href="https://www.metzeler.com/en-ww/catalogue/product/racetec-rr" target="_blank">Инфо</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <section id="contact" style="padding: 80px 0; text-align:center;">
+      <div style="max-width:600px; margin:0 auto;">
+        <h2>Нуждаеш се от помощ?</h2>
+        <p class="lead" style="font-size:16px;">
+          Не си сигурен коя гума е за теб? Обади ни се или пиши във Viber.
+        </p>
+        <div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">
+           <a class="cta viber" href="viber://chat?number=359879350721" target="_blank">
+             <svg width="16" height="16" fill="currentColor" viewBox="0 0 512 512"><path d="M444 49.9C431.3 38.2 379.9 .9 265.3 .4c0 0-135.1-8.1-200.9 52.3C27.8 89.3 14.9 143 13.5 209.5c-1.4 66.5-3.1 191.1 117 224.9h.1l-.1 51.6s-.8 20.9 13 25.1c16.6 5.2 26.4-10.7 42.3-27.8 8.7-9.4 20.4-23.2 29.4-33.8 11.4 2.9 25.3 5.1 41.5 5.1 0 0 153.8 13.3 227.4-72.5C557.6 302.6 456.7 61.6 444 49.9zm-38 293.7c-9.1 11.9-20.9 15.6-32.9 16.6-18 1.5-36-5.8-62.5-19.3-31-15.8-63.1-39.4-96-72.3-30.8-30.8-54.3-61.9-69.5-91.1-13.5-25.8-21.7-43.7-20.6-61.4 1-12 5-23.7 16.7-32.6 15-11.5 28.2-11.8 41.5-6.7 8.2 3.1 14.3 8.3 19.3 14.3 8 9.5 15.7 20 23.3 30.7 7.7 10.8 11.1 20 9 30-1.8 8.6-8.3 14.9 24.3l-10 11.8c-2.3 2.7-2.6 6.3-.7 9.4 10.6 16.9 23.2 32.7 37.8 47.3 14.6 14.6 30.3 27.2 47.1 37.7 3 1.9 6.5 1.6 9.3-.6l11.7-9.9c7.8-6.6 15.6-13.1 24.1-14.8 9.9-2 19.2 1.4 29.9 9 10.5 7.4 20.8 14.9 30.2 22.8 6 5 11.3 11 14.4 19 3.2 8.3 3.3 19.3-6.6 32.1z"/></svg>
+             Пиши във Viber
+           </a>
+           <a class="cta accent" href="tel:+359879350721">📞 +359 879 350 721</a>
+        </div>
+      </div>
+    </section>
+  </div>
+</main>
+
+<a href="#top" id="scrollTopBtn" class="scrollTopBtn" title="Нагоре">
+  <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+    <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path>
+  </svg>
+</a>
+
+<footer>
+  <div class="container">
+    <div>&copy; <span id="year"></span> Enduro Gumi. Всички права запазени.</div>
+    <div style="margin-top:10px; font-size:12px; color:#444;">
+       Сайтът е демонстрационен проект. Всички търговски марки са собственост на техните притежатели.
+    </div>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+
+  const scrollBtn = document.getElementById("scrollTopBtn");
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 300) {
+      scrollBtn.style.display = "flex";
+    } else {
+      scrollBtn.style.display = "none";
+    }
+  });
+</script>
+
+</body>
+</html>
